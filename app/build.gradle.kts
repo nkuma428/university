@@ -60,17 +60,24 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    //implementation(libs.androidx.material3)
 
     implementation(libs.navigation.compose)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.androidx.runtime.livedata)
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.okhttp.logging.interceptor)
     implementation(libs.room.runtime)
     annotationProcessor(libs.room.compiler)
+
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material3)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.compose.material3)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

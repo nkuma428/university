@@ -22,14 +22,22 @@ object AppModule {
         return ApiService.create()
     }
 
-    @Provides
+//    @Provides
+//    @Singleton
+//    fun provideDatabase(@ApplicationContext context: Context): UniversityDatabase {
+//        return Room.databaseBuilder(
+//            context,
+//            UniversityDatabase::class.java,
+//            "university_database"
+//        ).build()
+//    }
+
     @Singleton
-    fun provideDatabase(@ApplicationContext context: Context): UniversityDatabase {
-        return Room.databaseBuilder(
-            context.applicationContext,
-            UniversityDatabase::class.java,
-            "university_database"
-        ).build()
+    @Provides
+    fun provideAppDatabase(@ApplicationContext appContext: Context): UniversityDatabase {
+        return Room
+            .databaseBuilder(appContext, UniversityDatabase::class.java, "university_database")
+            .build()
     }
 
     @Provides

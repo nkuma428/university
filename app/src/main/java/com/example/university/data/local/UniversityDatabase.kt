@@ -9,20 +9,20 @@ import android.content.Context
 abstract class UniversityDatabase : RoomDatabase() {
     abstract fun universityDao(): UniversityDao
 
-    companion object {
-        @Volatile
-        private var INSTANCE: UniversityDatabase? = null
-
-        /*fun getDatabase(context: Context): UniversityDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    UniversityDatabase::class.java,
-                    "university_database"
-                ).build()
-                INSTANCE = instance
-                instance
-            }
-        }*/
-    }
+//    companion object {
+//        @Volatile
+//        private var INSTANCE: UniversityDatabase? = null
+//
+//        /*fun getDatabase(context: Context): UniversityDatabase {
+//            return INSTANCE ?: synchronized(this) {
+//                val instance = Room.databaseBuilder(
+//                    context.applicationContext,
+//                    UniversityDatabase::class.java,
+//                    "university_database"
+//                ).build()
+//                INSTANCE = instance
+//                instance
+//            }
+//        }*/
+//    }
 }
