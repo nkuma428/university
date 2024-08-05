@@ -1,5 +1,6 @@
 package com.example.university.data.remote
 
+import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -11,7 +12,6 @@ interface ApiService {
 
     companion object {
         private const val BASE_URL = "http://universities.hipolabs.com/"
-
         fun create(): ApiService {
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)

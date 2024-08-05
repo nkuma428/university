@@ -1,11 +1,13 @@
 package com.example.university.ui
 
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.university.data.remote.University
 import com.example.university.domain.GetUniversitiesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,8 +16,18 @@ class UniversityViewModel @Inject constructor(
     private val getUniversitiesUseCase: GetUniversitiesUseCase
 ) : ViewModel() {
 
-    var universities = mutableStateOf<List<University>>(emptyList())
-        private set
+    init {
+        loadUniversities("United Arab Emirates")
+    }
+
+    private val _universities = mutableStateOf<List<University>>(emptyList())
+    val universities: State<List<University>> get() = _universities
+
+//    private val _isLoading = mutableStateOf(false)
+//    val isLoading: State<Boolean> get() = _isLoading
+
+    /*var universities = mutableStateOf<List<University>>(emptyList())
+        private set*/
 
     var isLoading = mutableStateOf(false)
         private set
@@ -23,14 +35,13 @@ class UniversityViewModel @Inject constructor(
     var selectedUniversity = mutableStateOf<University?>(null)
         private set
 
-    fun loadUniversities(country: String) {
-        viewModelScope.launch {
+    private fun loadUniversities(country: String) {
+        viewModelScope.launch(Dispatchers.IO) {
             isLoading.value = true
-            universities.value = getUniversitiesUseCase(country)
+            _universities.value = getUniversitiesUseCase(country)
             isLoading.value = false
         }
     }
-
     fun selectUniversity(university: University) {
         selectedUniversity.value = university
     }

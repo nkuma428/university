@@ -13,7 +13,7 @@ abstract class UniversityDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: UniversityDatabase? = null
 
-        fun getDatabase(context: Context): UniversityDatabase {
+        /*fun getDatabase(context: Context): UniversityDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
@@ -23,6 +23,6 @@ abstract class UniversityDatabase : RoomDatabase() {
                 INSTANCE = instance
                 instance
             }
-        }
+        }*/
     }
 }
