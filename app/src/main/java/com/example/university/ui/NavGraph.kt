@@ -5,6 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.university.ui.details.UniversityDetailScreen
+import com.example.university.ui.listing.UniversityListScreen
+import com.example.university.ui.viewmodel.UniversityViewModel
 
 @Composable
 fun NavGraph(navController: NavHostController, viewModel: UniversityViewModel) {

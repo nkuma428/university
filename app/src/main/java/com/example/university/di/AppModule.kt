@@ -2,6 +2,7 @@ package com.example.university.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.university.data.UniversityRepository
 import com.example.university.data.local.UniversityDao
 import com.example.university.data.local.UniversityDatabase
 import com.example.university.data.remote.ApiService
@@ -32,13 +33,27 @@ object AppModule {
 //        ).build()
 //    }
 
-    @Singleton
+    /*@Singleton
     @Provides
     fun provideAppDatabase(@ApplicationContext appContext: Context): UniversityDatabase {
         return Room
             .databaseBuilder(appContext, UniversityDatabase::class.java, "university_database")
             .build()
+    }*/
+
+    @Provides
+    fun provideAppDatabase(@ApplicationContext appContext: Context): UniversityDatabase {
+        return Room.databaseBuilder(appContext, UniversityDatabase::class.java, "university_database").build()
     }
+
+    /*@Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext app: Context) = Room.databaseBuilder(
+        app,
+        UniversityDatabase::class.java,
+        "university_database"
+    ).build()*/
+
 
     @Provides
     @Singleton
@@ -50,4 +65,12 @@ object AppModule {
         ).build()*/
         return database.universityDao()
     }
+
+    /*@Provides
+    @Singleton
+    fun provideUniversityRepository(
+        api: ApiService,
+        dao: UniversityDao,
+        @ApplicationContext context: Context
+    ) = UniversityRepository(api, dao, context)*/
 }

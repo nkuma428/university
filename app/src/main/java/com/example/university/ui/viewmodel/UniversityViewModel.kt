@@ -1,4 +1,4 @@
-package com.example.university.ui
+package com.example.university.ui.viewmodel
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -18,7 +18,6 @@ import javax.inject.Inject
 class UniversityViewModel @Inject constructor(
     private val getUniversitiesUseCase: GetUniversitiesUseCase
 ) : ViewModel() {
-
     init {
         loadUniversities("United Arab Emirates")
     }
@@ -26,24 +25,11 @@ class UniversityViewModel @Inject constructor(
     private val _universities = mutableStateOf<List<University>>(emptyList())
     val universities: State<List<University>> get() = _universities
 
-//    private val _isLoading = mutableStateOf(false)
-//    val isLoading: State<Boolean> get() = _isLoading
-
     private val _isLoading = MutableStateFlow<Boolean>(true)
     val isLoading get() = _isLoading
 
-    /*var universities = mutableStateOf<List<University>>(emptyList())
-        private set*/
-
-    /*var isLoading = mutableStateOf(false)
-        private set*/
-
-    /*var selectedUniversity = MutableStateFlow<University?>(null)
-        private set*/
-
     private val _selectedUniversity = MutableLiveData<University>()
     val selectedUniversity: LiveData<University> get() = _selectedUniversity
-
     private fun loadUniversities(country: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _universities.value = getUniversitiesUseCase(country)

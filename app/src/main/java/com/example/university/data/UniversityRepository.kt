@@ -1,13 +1,18 @@
 package com.example.university.data
 
 
+import android.content.Context
+import android.net.ConnectivityManager
+import com.example.university.data.local.UniversityDao
 import com.example.university.data.remote.ApiService
 import com.example.university.data.remote.University
 import javax.inject.Inject
 
 class UniversityRepository @Inject constructor(
     private val apiService: ApiService/*,
-    private val universityDao: UniversityDao*/
+    private val universityDao: UniversityDao,
+    private val context: Context*/
+
 ) {
     suspend fun getUniversitiesByCountry(country: String): List<University> {
         return if (isInternetAvailable()) {
@@ -43,7 +48,9 @@ class UniversityRepository @Inject constructor(
     }
 
     private fun isInternetAvailable(): Boolean {
-        // Implement actual network check
+        /*val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = connectivityManager.activeNetworkInfo
+        return activeNetwork?.isConnectedOrConnecting == true*/
         return true
     }
 }
