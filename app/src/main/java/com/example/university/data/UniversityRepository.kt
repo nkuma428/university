@@ -3,23 +3,29 @@ package com.example.university.data
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.util.Log
 import com.example.university.data.local.UniversityDao
 import com.example.university.data.remote.ApiService
 import com.example.university.data.remote.University
+import com.example.university.util.NetworkUtil
 import javax.inject.Inject
 
 class UniversityRepository @Inject constructor(
-    private val apiService: ApiService/*,
+    private val apiService: ApiService,
+    private val networkUtil: NetworkUtil
+    /*,
     private val universityDao: UniversityDao,
     private val context: Context*/
 
 ) {
     suspend fun getUniversitiesByCountry(country: String): List<University> {
-        return if (isInternetAvailable()) {
+        return if (networkUtil.isNetworkAvailable()) {
+            Log.e("===","Network Available")
             val universities = apiService.getUniversitiesByCountry(country)
             //saveUniversitiesToLocal(universities)
             universities
         } else {
+            Log.e("===","Network Not Available")
             getUniversitiesFromLocal()
         }
     }
@@ -45,12 +51,5 @@ class UniversityRepository @Inject constructor(
             )
         }*/
         return listOf<University>()
-    }
-
-    private fun isInternetAvailable(): Boolean {
-        /*val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork = connectivityManager.activeNetworkInfo
-        return activeNetwork?.isConnectedOrConnecting == true*/
-        return true
     }
 }
