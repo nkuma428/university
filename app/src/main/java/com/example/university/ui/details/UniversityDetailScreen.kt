@@ -35,7 +35,7 @@ fun UniversityDetailScreen(viewModel: UniversityViewModel) {
                     universityState = it.stateProvince,
                     country = it.country,
                     countryCode = it.alphaTwoCode,
-                    webPage = it.webPages.toString(),
+                    webPageUrl = it.webPages.firstOrNull(),
                     modifier = Modifier.padding(padding)
                 )
             }

@@ -4,10 +4,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,51 +24,49 @@ fun UniversityInfoCard(
     universityState: String?,
     country: String?,
     countryCode: String?,
-    webPage: String?,
+    webPageUrl: String?,
     modifier: Modifier
 ) {
-    Card(
+    Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
+        Text(
+            text = universityName ?: "Not Available",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Gray
+        )
+        Spacer (modifier = Modifier.height(8.dp))
+        Text(
+            text = universityState ?: "Not Available",
+            fontSize = 16.sp,
+            color = Color.Gray
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = universityName ?: "N/A",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Gray
-            )
-            Spacer (modifier = Modifier.height(8.dp))
-            Text(
-                text = universityState ?: "N/A",
+                text = country ?: "Not Available",
                 fontSize = 16.sp,
                 color = Color.Gray
             )
-            Spacer(modifier = Modifier.height(4.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+            Text(
+                text = countryCode ?: "Not Available",
+                fontSize = 16.sp,
+                color = Color.Gray
+            )
+        }
+        webPageUrl?.let {
+            Surface(
+                modifier = modifier.fillMaxSize(),
+                color = MaterialTheme.colorScheme.background
             ) {
-                Text(
-                    text = country ?: "N/A",
-                    fontSize = 16.sp,
-                    color = Color.Gray
-                )
-                Text(
-                    text = countryCode ?: "N/A",
-                    fontSize = 16.sp,
-                    color = Color.Gray
-                )
+                WebPageScreen(it)
             }
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = webPage ?: "N/A",
-                fontSize = 16.sp,
-                color = Color.Gray
-            )
         }
     }
 }

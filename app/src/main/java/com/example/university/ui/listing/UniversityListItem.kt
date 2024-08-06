@@ -1,5 +1,4 @@
 package com.example.university.ui.listing
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.university.R
 import com.example.university.data.remote.University
-
 @Composable
 fun UniversityListItem(university: University, onClick: () -> Unit) {
     Card(
@@ -51,14 +49,14 @@ fun UniversityListItem(university: University, onClick: () -> Unit) {
                     modifier = Modifier.weight(1f)
                 ) {
                     Text(
-                        text = university.name ?: "N/A",
+                        text = university.name ?: "Not Available",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     )
                     Spacer(modifier = Modifier.height(5.dp))
                     Text(
-                        text  = university.country ?: "N/A",
+                        text  = university.country ?: "Not Available",
                         fontSize = 14.sp,
                         color = Color.Gray
                     )
