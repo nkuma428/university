@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
-    //id("com.google.dagger.hilt.android")
     alias(libs.plugins.dagger.hilt.android)
 }
 

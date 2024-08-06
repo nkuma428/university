@@ -19,6 +19,7 @@ import javax.inject.Inject
 class UniversityViewModel @Inject constructor(
     private val getUniversitiesUseCase: GetUniversitiesUseCase
 ) : ViewModel() {
+
     init {
         loadUniversities()
     }

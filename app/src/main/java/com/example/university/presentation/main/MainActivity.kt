@@ -16,9 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-//    @Inject
-//    lateinit var viewModel: UniversityViewModel
-        //private lateinit var viewModel: UniversityViewModel
 
     private val viewModel: UniversityViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +23,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             UniversityApp(viewModel)
         }
-        //viewModel = ViewModelProvider(this)[UniversityViewModel::class.java]
     }
 }
 @Composable
@@ -36,12 +32,5 @@ fun UniversityApp(viewModel : UniversityViewModel) {
         Surface {
             NavGraph(navController = navController, viewModel = viewModel)
         }
-    }
-}
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    UniversityTheme {
-        //UniversityApp(UniversityViewModel())
     }
 }

@@ -1,7 +1,5 @@
 package com.example.university.data.repository
 
-
-import android.util.Log
 import com.example.university.data.local.UniversityDao
 import com.example.university.data.remote.ApiService
 import com.example.university.data.remote.University
@@ -15,37 +13,18 @@ class UniversityRepository @Inject constructor(
 ) {
     suspend fun getUniversitiesByCountry(country: String): List<University> {
         return if (networkUtil.isNetworkAvailable()) {
-            Log.e("===","Network Available")
             val universities = apiService.getUniversitiesByCountry(country)
-            //saveUniversitiesToLocal(universities)
+            saveUniversitiesToLocal(universities)
             universities
         } else {
-            Log.e("===","Network Not Available")
-            //getUniversitiesFromLocal()
-            listOf<University>()
+            getUniversitiesFromLocal()
         }
     }
 
     private suspend fun saveUniversitiesToLocal(universities: List<University>) {
-        /*val entities = universities.map {
-            UniversityEntity(
-                name = it.name,
-                country = it.country,
-                alpha_two_code = it.alpha_two_code
-            )
-        }*/
-        //universityDao.insertAll(entities)
+        universityDao.insertAll(universities)
     }
-
     private suspend fun getUniversitiesFromLocal(): List<University> {
-        /*return universityDao.getAllUniversities().map {
-            University(
-                name = it.name,
-                country = it.country,
-                alpha_two_code = it.alpha_two_code,
-                web_pages = null
-            )
-        }*/
-        return listOf<University>()
+        return return universityDao.getAllUniversities()
     }
 }

@@ -2,4 +2,5 @@
     <string name="app_name">University</string>
     <string name="title_university_list">University List</string>
     <string name="title_university_details">University Details</string>
+    <string name="not_available">Not Available</string>
 </resources>

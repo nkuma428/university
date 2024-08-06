@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,14 +50,14 @@ fun UniversityListItem(university: University, onClick: () -> Unit) {
                     modifier = Modifier.weight(1f)
                 ) {
                     Text(
-                        text = university.name ?: "Not Available",
+                        text = university.name ?: stringResource(id = R.string.not_available),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     )
                     Spacer(modifier = Modifier.height(5.dp))
                     Text(
-                        text  = university.country ?: "Not Available",
+                        text  = university.country ?: stringResource(id = R.string.not_available),
                         fontSize = 14.sp,
                         color = Color.Gray
                     )

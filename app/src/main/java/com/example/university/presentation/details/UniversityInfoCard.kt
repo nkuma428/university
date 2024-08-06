@@ -14,9 +14,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.university.R
 
 @Composable
 fun UniversityInfoCard(
@@ -33,14 +35,14 @@ fun UniversityInfoCard(
             .padding(16.dp)
     ) {
         Text(
-            text = universityName ?: "Not Available",
+            text = universityName ?: stringResource(id = R.string.not_available),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Gray
         )
         Spacer (modifier = Modifier.height(8.dp))
         Text(
-            text = universityState ?: "Not Available",
+            text = universityState ?: stringResource(id = R.string.not_available),
             fontSize = 16.sp,
             color = Color.Gray
         )
@@ -50,12 +52,12 @@ fun UniversityInfoCard(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = country ?: "Not Available",
+                text = country ?: stringResource(id = R.string.not_available),
                 fontSize = 16.sp,
                 color = Color.Gray
             )
             Text(
-                text = countryCode ?: "Not Available",
+                text = countryCode ?: stringResource(id = R.string.not_available),
                 fontSize = 16.sp,
                 color = Color.Gray
             )
