@@ -61,7 +61,6 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    //implementation(libs.androidx.material3)
 
     implementation(libs.navigation.compose)
     implementation(libs.hilt.android)
@@ -73,8 +72,6 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.okhttp.logging.interceptor)
-    implementation(libs.room.runtime)
-    annotationProcessor(libs.room.compiler)
 
     implementation(libs.compose.foundation)
     implementation(libs.lifecycle.viewmodel.compose)

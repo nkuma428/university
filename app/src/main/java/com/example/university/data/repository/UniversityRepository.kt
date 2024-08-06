@@ -1,10 +1,7 @@
 package com.example.university.data.repository
 
 
-import android.content.Context
-import android.net.ConnectivityManager
 import android.util.Log
-import com.example.university.data.local.UniversityDao
 import com.example.university.data.remote.ApiService
 import com.example.university.data.remote.University
 import com.example.university.util.NetworkUtil
@@ -13,10 +10,6 @@ import javax.inject.Inject
 class UniversityRepository @Inject constructor(
     private val apiService: ApiService,
     private val networkUtil: NetworkUtil
-    /*,
-    private val universityDao: UniversityDao,
-    private val context: Context*/
-
 ) {
     suspend fun getUniversitiesByCountry(country: String): List<University> {
         return if (networkUtil.isNetworkAvailable()) {
@@ -26,7 +19,8 @@ class UniversityRepository @Inject constructor(
             universities
         } else {
             Log.e("===","Network Not Available")
-            getUniversitiesFromLocal()
+            //getUniversitiesFromLocal()
+            listOf<University>()
         }
     }
 

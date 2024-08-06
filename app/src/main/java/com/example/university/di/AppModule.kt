@@ -1,14 +1,9 @@
 package com.example.university.di
 
-import android.content.Context
-import androidx.room.Room
-import com.example.university.data.local.UniversityDao
-import com.example.university.data.local.UniversityDatabase
 import com.example.university.data.remote.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -40,10 +35,10 @@ object AppModule {
             .build()
     }*/
 
-    @Provides
+    /*@Provides
     fun provideAppDatabase(@ApplicationContext appContext: Context): UniversityDatabase {
         return Room.databaseBuilder(appContext, UniversityDatabase::class.java, "university_database").build()
-    }
+    }*/
 
     /*@Provides
     @Singleton
@@ -54,16 +49,16 @@ object AppModule {
     ).build()*/
 
 
-    @Provides
+    /*@Provides
     @Singleton
     fun provideUniversityDao(database: UniversityDatabase): UniversityDao {
-        /*val db = Room.databaseBuilder(
+        *//*val db = Room.databaseBuilder(
             context.applicationContext,
             UniversityDatabase::class.java,
             "university_database"
-        ).build()*/
+        ).build()*//*
         return database.universityDao()
-    }
+    }*/
 
     /*@Provides
     @Singleton
