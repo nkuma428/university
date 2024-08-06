@@ -65,6 +65,7 @@ dependencies {
 
     implementation(libs.navigation.compose)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.material3.android)
     kapt(libs.hilt.compiler)
 
     implementation(libs.androidx.runtime.livedata)
@@ -76,9 +77,7 @@ dependencies {
     annotationProcessor(libs.room.compiler)
 
     implementation(libs.compose.foundation)
-    implementation(libs.compose.material3)
     implementation(libs.lifecycle.viewmodel.compose)
-    implementation(libs.compose.material3)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
