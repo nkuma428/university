@@ -30,7 +30,7 @@ class UniversityViewModel @Inject constructor(
 
     private val _selectedUniversity = MutableLiveData<University>()
     val selectedUniversity: LiveData<University> get() = _selectedUniversity
-    private fun loadUniversities(country: String) {
+    fun loadUniversities(country: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _universities.value = getUniversitiesUseCase(country)
             _isLoading.value = false

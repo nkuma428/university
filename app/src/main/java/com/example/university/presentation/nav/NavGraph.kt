@@ -12,6 +12,6 @@ import com.example.university.presentation.viewmodel.UniversityViewModel
 fun NavGraph(navController: NavHostController, viewModel: UniversityViewModel) {
     NavHost(navController = navController, startDestination = "list") {
         composable("list") { UniversityListScreen(viewModel, navController) }
-        composable("details") { UniversityDetailScreen(viewModel) }
+        composable("details") { UniversityDetailScreen(navController, viewModel) }
     }
 }

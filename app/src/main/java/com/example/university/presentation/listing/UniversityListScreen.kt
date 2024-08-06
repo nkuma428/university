@@ -12,6 +12,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -22,8 +24,18 @@ import com.example.university.presentation.viewmodel.UniversityViewModel
 @Composable
 fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavController) {
 
-    val state = viewModel.universities.value
+    val universities = viewModel.universities.value
     val isLoading = viewModel.isLoading.collectAsState(true)
+
+    // Observe the refresh trigger
+    val refreshFlag = navController.currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>("refresh")?.observeAsState()
+
+    // Trigger a refresh if needed
+    if (refreshFlag?.value == true) {
+        viewModel.loadUniversities("United Arab Emirates")
+        // Clear the refresh trigger
+        navController.currentBackStackEntry?.savedStateHandle?.set("refresh", false)
+    }
 
     Scaffold(
         topBar = {
@@ -43,7 +55,7 @@ fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavContr
                     // CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
                 } else {
                     LazyColumn(modifier = Modifier.padding(10.dp)) {
-                        items(state) { university ->
+                        items(universities) { university ->
                             UniversityListItem(university) {
                                 viewModel.selectUniversity(university)
                                 navController.navigate("details")
