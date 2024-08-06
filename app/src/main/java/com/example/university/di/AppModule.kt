@@ -14,11 +14,15 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    // Provides an instance of ApiService as a singleton
     @Provides
     @Singleton
     fun provideApiService(): ApiService {
         return ApiService.create()
     }
+
+    // Provides an instance of UniversityDatabase as a singleton
     @Singleton
     @Provides
     fun provideDatabase(@ApplicationContext appContext: Context): UniversityDatabase {
@@ -28,6 +32,8 @@ object AppModule {
             "university_db"
         ).build()
     }
+
+    // Provides an instance of UniversityDao as a singleton
     @Singleton
     @Provides
     fun provideUniversityDao(database: UniversityDatabase) = database.universityDao()

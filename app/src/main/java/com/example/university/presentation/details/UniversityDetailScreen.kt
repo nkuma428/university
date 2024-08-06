@@ -26,10 +26,12 @@ import com.example.university.util.AppConstants
 @Composable
 fun UniversityDetailScreen(navController: NavHostController, viewModel: UniversityViewModel) {
 
+    // Observe the selected university from the ViewModel
     val university by viewModel.selectedUniversity.observeAsState()
 
     Scaffold(
         topBar = {
+            // TopAppBar for the screen
             TopAppBar(
                 title = { Text(stringResource(id = R.string.title_university_details)) },
                 actions = {
@@ -53,6 +55,7 @@ fun UniversityDetailScreen(navController: NavHostController, viewModel: Universi
             )
         },
         content = { padding ->
+            // Display the UniversityInfoCard if a university is selected
             university?.let {
                 UniversityInfoCard(
                     universityName = it.name,

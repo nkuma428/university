@@ -8,12 +8,11 @@ import androidx.room.Query
 @Dao
 interface UniversityDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUniversity(university: UniversityEntity)
-
+    // Inserts a list of university entities into the database
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(universities: List<UniversityEntity>)
 
+    // Queries the database to retrieve all university entities
     @Query("SELECT * FROM universities")
     suspend fun getAllUniversities(): List<UniversityEntity>
 }

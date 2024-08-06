@@ -29,20 +29,22 @@ import com.example.university.util.UiState
 @Composable
 fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavController) {
 
+    // Collect the current state of universities from the ViewModel
     val uiState = viewModel.universities.collectAsState()
 
     // Observe the refresh trigger
     val refreshFlag = navController.currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(AppConstants.KEY_REFRESH)?.observeAsState()
 
-    // Trigger a refresh if needed
+    // Trigger a refresh if the refresh flag is set to true
     if (refreshFlag?.value == true) {
         viewModel.loadUniversities()
-        // Clear the refresh trigger
+        // Clear the refresh trigger to avoid repeated refreshes
         navController.currentBackStackEntry?.savedStateHandle?.set(AppConstants.KEY_REFRESH, false)
     }
 
     Scaffold(
         topBar = {
+            // TopAppBar with custom colors and title
             TopAppBar(
                 title = { Text(stringResource(id = R.string.title_university_list)) },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -52,8 +54,10 @@ fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavContr
             )
         },
         content = { padding ->
+            // Handling different states of the UI: Loading, Success, and Error
             when (val state = uiState.value) {
                 is UiState.Loading -> {
+                    // Display a loading indicator in the center of the screen
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
@@ -64,6 +68,7 @@ fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavContr
                     }
                 }
                 is UiState.Success -> {
+                    // Display the list of universities
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
@@ -74,8 +79,10 @@ fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavContr
                                 .fillMaxSize()
                                 .padding(10.dp)
                         ) {
+                            // Render each university as a list item
                             items(state.data) { university ->
                                 UniversityListItem(university) {
+                                    // Handle click event to navigate to the detail screen
                                     viewModel.selectUniversity(university)
                                     navController.navigate(AppConstants.ROUTE_DETAIL_SCREEN)
                                 }
@@ -84,6 +91,7 @@ fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavContr
                     }
                 }
                 is UiState.Error -> {
+                    // Display an error message in the center of the screen
                     Box(
                         modifier = Modifier
                             .fillMaxSize()

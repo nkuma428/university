@@ -27,12 +27,13 @@ import com.example.university.data.remote.University
 
 @Composable
 fun UniversityListItem(university: University, onClick: () -> Unit) {
+    // Card to display each university item
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(120.dp)
             .padding(vertical = 4.dp)
-            .clickable { onClick() },
+            .clickable { onClick() },// Makes the card clickable
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
@@ -63,6 +64,7 @@ fun UniversityListItem(university: University, onClick: () -> Unit) {
                         color = Color.Gray
                     )
                 }
+                // Icon indicating the item can be clicked for more details
                 Icon(
                     painter = painterResource(id = R.drawable.ic_arrow_right),
                     contentDescription = "Forward Arrow",
