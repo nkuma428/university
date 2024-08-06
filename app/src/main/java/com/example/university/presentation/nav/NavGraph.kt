@@ -7,11 +7,12 @@ import androidx.navigation.compose.composable
 import com.example.university.presentation.details.UniversityDetailScreen
 import com.example.university.presentation.listing.UniversityListScreen
 import com.example.university.presentation.viewmodel.UniversityViewModel
+import com.example.university.util.AppConstants
 
 @Composable
 fun NavGraph(navController: NavHostController, viewModel: UniversityViewModel) {
-    NavHost(navController = navController, startDestination = "list") {
-        composable("list") { UniversityListScreen(viewModel, navController) }
-        composable("details") { UniversityDetailScreen(navController, viewModel) }
+    NavHost(navController = navController, startDestination = AppConstants.ROUTE_LIST_SCREEN) {
+        composable(AppConstants.ROUTE_LIST_SCREEN) { UniversityListScreen(viewModel, navController) }
+        composable(AppConstants.ROUTE_DETAIL_SCREEN) { UniversityDetailScreen(navController, viewModel) }
     }
 }

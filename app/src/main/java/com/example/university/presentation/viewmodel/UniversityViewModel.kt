@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.university.data.remote.University
 import com.example.university.domain.GetUniversitiesUseCase
+import com.example.university.util.AppConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +20,7 @@ class UniversityViewModel @Inject constructor(
     private val getUniversitiesUseCase: GetUniversitiesUseCase
 ) : ViewModel() {
     init {
-        loadUniversities("United Arab Emirates")
+        loadUniversities()
     }
 
     private val _universities = mutableStateOf<List<University>>(emptyList())
@@ -30,9 +31,9 @@ class UniversityViewModel @Inject constructor(
 
     private val _selectedUniversity = MutableLiveData<University>()
     val selectedUniversity: LiveData<University> get() = _selectedUniversity
-    fun loadUniversities(country: String) {
+    fun loadUniversities() {
         viewModelScope.launch(Dispatchers.IO) {
-            _universities.value = getUniversitiesUseCase(country)
+            _universities.value = getUniversitiesUseCase(AppConstants.DEFAULT_COUNTRY_NAME)
             _isLoading.value = false
         }
     }

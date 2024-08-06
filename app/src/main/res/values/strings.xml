@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">University</string>
+    <string name="title_university_list">University List</string>
+    <string name="title_university_details">University Details</string>
 </resources>

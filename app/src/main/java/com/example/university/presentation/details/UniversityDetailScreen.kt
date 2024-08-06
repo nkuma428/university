@@ -15,10 +15,13 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.university.R
 import com.example.university.presentation.viewmodel.UniversityViewModel
+import com.example.university.util.AppConstants
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UniversityDetailScreen(navController: NavHostController, viewModel: UniversityViewModel) {
@@ -28,11 +31,11 @@ fun UniversityDetailScreen(navController: NavHostController, viewModel: Universi
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("University Details") },
+                title = { Text(stringResource(id = R.string.title_university_details)) },
                 actions = {
                     IconButton(onClick = {
                         // Navigate back and refresh the UniversityListScreen
-                        navController.previousBackStackEntry?.savedStateHandle?.set("refresh", true)
+                        navController.previousBackStackEntry?.savedStateHandle?.set(AppConstants.KEY_REFRESH, true)
                         navController.popBackStack()
                     }) {
                         Icon(

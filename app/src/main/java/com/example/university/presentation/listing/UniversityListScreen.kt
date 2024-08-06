@@ -16,9 +16,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.university.R
 import com.example.university.presentation.viewmodel.UniversityViewModel
+import com.example.university.util.AppConstants
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,19 +31,19 @@ fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavContr
     val isLoading = viewModel.isLoading.collectAsState(true)
 
     // Observe the refresh trigger
-    val refreshFlag = navController.currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>("refresh")?.observeAsState()
+    val refreshFlag = navController.currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(AppConstants.KEY_REFRESH)?.observeAsState()
 
     // Trigger a refresh if needed
     if (refreshFlag?.value == true) {
-        viewModel.loadUniversities("United Arab Emirates")
+        viewModel.loadUniversities()
         // Clear the refresh trigger
-        navController.currentBackStackEntry?.savedStateHandle?.set("refresh", false)
+        navController.currentBackStackEntry?.savedStateHandle?.set(AppConstants.KEY_REFRESH, false)
     }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("University List") },
+                title = { Text(stringResource(id = R.string.title_university_list)) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color(0xFF6200EE), // Custom background color
                     titleContentColor = Color.White // Custom title color
@@ -58,7 +61,7 @@ fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavContr
                         items(universities) { university ->
                             UniversityListItem(university) {
                                 viewModel.selectUniversity(university)
-                                navController.navigate("details")
+                                navController.navigate(AppConstants.ROUTE_DETAIL_SCREEN)
                             }
                         }
                     }
