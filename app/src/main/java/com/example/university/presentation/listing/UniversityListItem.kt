@@ -1,4 +1,4 @@
-package com.example.university.ui.listing
+package com.example.university.presentation.listing
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

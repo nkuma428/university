@@ -1,4 +1,4 @@
-package com.example.university
+package com.example.university.presentation.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,9 +9,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.example.university.ui.NavGraph
-import com.example.university.ui.viewmodel.UniversityViewModel
-import com.example.university.ui.theme.UniversityTheme
+import com.example.university.presentation.nav.NavGraph
+import com.example.university.presentation.viewmodel.UniversityViewModel
+import com.example.university.presentation.theme.UniversityTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

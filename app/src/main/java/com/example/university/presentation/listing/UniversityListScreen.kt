@@ -1,4 +1,4 @@
-package com.example.university.ui.listing
+package com.example.university.presentation.listing
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.university.ui.viewmodel.UniversityViewModel
+import com.example.university.presentation.viewmodel.UniversityViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

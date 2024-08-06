@@ -1,12 +1,12 @@
-package com.example.university.ui
+package com.example.university.presentation.nav
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.university.ui.details.UniversityDetailScreen
-import com.example.university.ui.listing.UniversityListScreen
-import com.example.university.ui.viewmodel.UniversityViewModel
+import com.example.university.presentation.details.UniversityDetailScreen
+import com.example.university.presentation.listing.UniversityListScreen
+import com.example.university.presentation.viewmodel.UniversityViewModel
 
 @Composable
 fun NavGraph(navController: NavHostController, viewModel: UniversityViewModel) {

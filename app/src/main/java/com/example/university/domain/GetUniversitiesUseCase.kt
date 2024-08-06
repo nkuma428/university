@@ -1,6 +1,6 @@
 package com.example.university.domain
 
-import com.example.university.data.UniversityRepository
+import com.example.university.data.repository.UniversityRepository
 import com.example.university.data.remote.University
 import javax.inject.Inject
 

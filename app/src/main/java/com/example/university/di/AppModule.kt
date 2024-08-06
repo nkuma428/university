@@ -2,7 +2,6 @@ package com.example.university.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.university.data.UniversityRepository
 import com.example.university.data.local.UniversityDao
 import com.example.university.data.local.UniversityDatabase
 import com.example.university.data.remote.ApiService

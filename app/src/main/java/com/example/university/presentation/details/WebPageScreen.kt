@@ -1,4 +1,4 @@
-package com.example.university.ui.details
+package com.example.university.presentation.details
 
 import android.annotation.SuppressLint
 import android.webkit.WebView
