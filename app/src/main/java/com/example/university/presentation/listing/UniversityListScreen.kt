@@ -1,6 +1,6 @@
 package com.example.university.presentation.listing
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -52,11 +52,13 @@ fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavContr
             )
         },
         content = { padding ->
-            Column(modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+            ) {
                 if (isLoading.value) {
-                    CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 } else {
                     LazyColumn(modifier = Modifier.padding(10.dp)) {
                         items(universities) { university ->
