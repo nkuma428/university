@@ -23,13 +23,13 @@ import androidx.navigation.NavController
 import com.example.university.R
 import com.example.university.presentation.viewmodel.UniversityViewModel
 import com.example.university.util.AppConstants
+import com.example.university.util.UiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavController) {
 
-    val universities = viewModel.universities.value
-    val isLoading = viewModel.isLoading.collectAsState(true)
+    val uiState = viewModel.universities.collectAsState()
 
     // Observe the refresh trigger
     val refreshFlag = navController.currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(AppConstants.KEY_REFRESH)?.observeAsState()
@@ -52,21 +52,45 @@ fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavContr
             )
         },
         content = { padding ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding)
-            ) {
-                if (isLoading.value) {
-                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-                } else {
-                    LazyColumn(modifier = Modifier.padding(10.dp)) {
-                        items(universities) { university ->
-                            UniversityListItem(university) {
-                                viewModel.selectUniversity(university)
-                                navController.navigate(AppConstants.ROUTE_DETAIL_SCREEN)
+            when (val state = uiState.value) {
+                is UiState.Loading -> {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(padding),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                }
+                is UiState.Success -> {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(padding)
+                    ) {
+                        LazyColumn(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(10.dp)
+                        ) {
+                            items(state.data) { university ->
+                                UniversityListItem(university) {
+                                    viewModel.selectUniversity(university)
+                                    navController.navigate(AppConstants.ROUTE_DETAIL_SCREEN)
+                                }
                             }
                         }
+                    }
+                }
+                is UiState.Error -> {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(padding),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = state.message)
                     }
                 }
             }

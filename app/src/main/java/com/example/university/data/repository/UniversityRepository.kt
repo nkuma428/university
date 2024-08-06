@@ -12,23 +12,41 @@ class UniversityRepository @Inject constructor(
     private val networkUtil: NetworkUtil,
     private val universityDao: UniversityDao
 ) {
-    suspend fun getUniversitiesByCountry(country: String): List<University> {
-        return if (networkUtil.isNetworkAvailable()) {
-            val universities = apiService.getUniversitiesByCountry(country)
-            saveUniversitiesToLocal(universities)
-            universities
-        } else {
-            getUniversitiesFromLocal()
+    suspend fun getUniversitiesByCountry(country: String): Result<List<University>> {
+        return try {
+            if (networkUtil.isNetworkAvailable()) {
+                val universities = apiService.getUniversitiesByCountry(country)
+                saveUniversitiesToLocal(universities)
+                Result.success(universities)
+            } else {
+                val localUniversities = getUniversitiesFromLocal()
+                if(localUniversities.isNotEmpty()) {
+                    Result.success(localUniversities)
+                } else {
+                    Result.failure(Exception("No data found!"))
+                }
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
         }
     }
 
     private suspend fun saveUniversitiesToLocal(universities: List<University>) {
-        val entities = universities.map { UniversityMapper.toEntity(it) }
-        // Insert all entities into the database
-        universityDao.insertAll(entities)
+        try {
+            val entities = universities.map { UniversityMapper.toEntity(it) }
+            // Insert all entities into the database
+            universityDao.insertAll(entities)
+        } catch (e: Exception) {
+            println(e.message)
+        }
     }
     private suspend fun getUniversitiesFromLocal(): List<University> {
-        val entities = universityDao.getAllUniversities()
-        return entities.map { UniversityMapper.toUniversity(it) }
+        return try {
+            val entities = universityDao.getAllUniversities()
+            return entities.map { UniversityMapper.toUniversity(it) }
+        } catch (e: Exception) {
+            // Handle database exceptions here (e.g., SQLiteException)
+            emptyList() // Return an empty list in case of error
+        }
     }
 }
