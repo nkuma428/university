@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.university.R
 import com.example.university.data.remote.University
+
 @Composable
 fun UniversityListItem(university: University, onClick: () -> Unit) {
     Card(

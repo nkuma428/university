@@ -1,7 +1,6 @@
 package com.example.university.data.remote
 
 import com.example.university.util.AppConstants
-import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET

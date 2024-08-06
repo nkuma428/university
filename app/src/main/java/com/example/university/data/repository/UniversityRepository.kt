@@ -4,6 +4,7 @@ import com.example.university.data.local.UniversityDao
 import com.example.university.data.remote.ApiService
 import com.example.university.data.remote.University
 import com.example.university.util.NetworkUtil
+import com.example.university.util.UniversityMapper
 import javax.inject.Inject
 
 class UniversityRepository @Inject constructor(
@@ -22,9 +23,12 @@ class UniversityRepository @Inject constructor(
     }
 
     private suspend fun saveUniversitiesToLocal(universities: List<University>) {
-        universityDao.insertAll(universities)
+        val entities = universities.map { UniversityMapper.toEntity(it) }
+        // Insert all entities into the database
+        universityDao.insertAll(entities)
     }
     private suspend fun getUniversitiesFromLocal(): List<University> {
-        return return universityDao.getAllUniversities()
+        val entities = universityDao.getAllUniversities()
+        return entities.map { UniversityMapper.toUniversity(it) }
     }
 }
