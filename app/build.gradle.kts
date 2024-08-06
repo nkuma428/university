@@ -66,15 +66,17 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.androidx.material3.android)
     kapt(libs.hilt.compiler)
-
     implementation(libs.androidx.runtime.livedata)
-
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.okhttp.logging.interceptor)
-
     implementation(libs.compose.foundation)
     implementation(libs.lifecycle.viewmodel.compose)
+
+    implementation(libs.androidx.room.common)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
