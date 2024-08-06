@@ -45,7 +45,7 @@ class UniversityRepository @Inject constructor(
             val entities = universityDao.getAllUniversities()
             return entities.map { UniversityMapper.toUniversity(it) }
         } catch (e: Exception) {
-            // Handle database exceptions here (e.g., SQLiteException)
+            // Handle database exceptions here
             emptyList() // Return an empty list in case of error
         }
     }
