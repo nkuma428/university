@@ -1,7 +1,10 @@
 package com.example.university.data.remote
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class University(
     @SerializedName("alpha_two_code")
     var alphaTwoCode: String? = null,
@@ -20,4 +23,4 @@ data class University(
 
     @SerializedName("state-province")
     var stateProvince: String? = null
-)
+) : Parcelable

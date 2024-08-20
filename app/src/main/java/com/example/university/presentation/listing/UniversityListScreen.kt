@@ -1,5 +1,6 @@
 package com.example.university.presentation.listing
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -24,6 +25,7 @@ import com.example.university.R
 import com.example.university.presentation.viewmodel.UniversityViewModel
 import com.example.university.util.AppConstants
 import com.example.university.util.UiState
+import com.google.gson.Gson
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -83,8 +85,9 @@ fun UniversityListScreen(viewModel: UniversityViewModel, navController: NavContr
                             items(state.data) { university ->
                                 UniversityListItem(university) {
                                     // Handle click event to navigate to the detail screen
-                                    viewModel.selectUniversity(university)
-                                    navController.navigate(AppConstants.ROUTE_DETAIL_SCREEN)
+                                    //viewModel.selectUniversity(university)
+                                    val universityJson = Uri.encode(Gson().toJson(university))
+                                    navController.navigate("${AppConstants.ROUTE_DETAIL_SCREEN}/$universityJson")
                                 }
                             }
                         }

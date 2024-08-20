@@ -19,15 +19,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.university.R
+import com.example.university.data.remote.University
 import com.example.university.presentation.viewmodel.UniversityViewModel
 import com.example.university.util.AppConstants
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UniversityDetailScreen(navController: NavHostController, viewModel: UniversityViewModel) {
+fun UniversityDetailScreen(navController: NavHostController, university: University) {
 
     // Observe the selected university from the ViewModel
-    val university by viewModel.selectedUniversity.observeAsState()
+    //val university by viewModel.selectedUniversity.observeAsState()
 
     Scaffold(
         topBar = {
